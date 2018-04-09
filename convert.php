@@ -7,6 +7,7 @@ $audio_path = "/Users/Easy/Code/gitcode/LazyAudioBook/";
 // ======= 以下不用修改 ==========
 
 define( "DATA_DIR" , __DIR__ . '/data' );
+define( "VOICE_TYPE" , 3 ); // 3 = 男声 , 4 = 女生
 $delete = [];
 
 // 首先将目录中的txt文件都转为mp3 
@@ -18,7 +19,7 @@ foreach( glob(DATA_DIR . "/*.txt") as $file )
     if( strlen( $content ) < 1 ) continue;
     
     $to = str_replace(".txt",".mp3",$file);
-    system("cd $audio_path & robo convert $file $to 3  --load-from $audio_path");
+    system("cd $audio_path & robo convert $file $to " . VOICE_TYPE . "  --load-from $audio_path");
 }
 $list_file = DATA_DIR . "/videos.txt";
 @unlink( $list_file );
